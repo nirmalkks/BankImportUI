@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
+import { notify } from "react-notify-toast";
 
 import { dataParseCompleted } from "../actions/index";
 
@@ -28,6 +29,11 @@ class DataParser extends Component {
     if (parsedInputData.length > 0) {
       this.context.router.history.push("/import/mapping");
       this.props.dataParseCompleted(this.state.bankData, parsedInputData);
+    } else {
+      notify.show(
+        "Please paste your bank data before clicking on next button",
+        "error"
+      );
     }
   }
 

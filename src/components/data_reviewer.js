@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
+import { notify } from "react-notify-toast";
 
 import Grid from "./grid";
 import { saveTransactions } from "../actions/index";
@@ -126,6 +127,11 @@ class DataReviewer extends Component {
       this.props.saveTransactions(finalTransactionData).then(() => {
         this.context.router.history.push("/");
       });
+    } else {
+      notify.show(
+        "No data to save",
+        "error"
+      );
     }
   }
 

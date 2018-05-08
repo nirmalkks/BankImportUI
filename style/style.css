@@ -204,6 +204,7 @@ input:focus {
   height: 100%;
 }
 
+/* grid style */
 .tWrap {
   height: 100%;
   display: flex;
@@ -251,3 +252,4 @@ table tr:first-child td {
 .tWrap-body {
   border-radius: 0 0 10px 10px;
 }
+/* grid style */

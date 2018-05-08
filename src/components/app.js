@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import Notifications from "react-notify-toast";
 
 import Header from "./header";
 import NavBar from "./nav_bar";
@@ -20,6 +21,7 @@ export default class App extends Component {
             </Switch>
           </div>
         </div>
+        <Notifications />
       </div>
     );
   }

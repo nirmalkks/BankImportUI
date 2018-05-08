@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
+import { notify } from "react-notify-toast";
 
 import { dataMappingCompleted } from "../actions/index";
 
@@ -22,12 +23,15 @@ class DataMapper extends Component {
   }
 
   onDataMapperDropdownChange(event) {
-    this.setState({
-      columnDataMappings: {
-        ...this.state.columnDataMappings,
-        [event.target.value]: event.target.name
+    let newMappings = {};
+
+    for (let [key, value] of Object.entries(this.state.columnDataMappings)) {
+      if (value !== event.target.name) {
+        newMappings[key] = value;
       }
-    });
+    }
+    newMappings[event.target.value] = event.target.name;
+    this.setState({ columnDataMappings: newMappings });
   }
 
   getDataMapperDropdownValue(index) {
@@ -108,6 +112,11 @@ class DataMapper extends Component {
 
       this.context.router.history.push("/import/review");
       this.props.dataMappingCompleted(mappings, mappedInputData);
+    } else {
+      notify.show(
+        "Please select mappings for all the 3 (date, description and amount) data entities",
+        "error"
+      );
     }
   }
 
